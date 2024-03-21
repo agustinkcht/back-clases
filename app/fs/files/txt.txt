@@ -1,0 +1,43 @@
+- traemos filesystem
+- traemos crypto para codigo hexadecimal (forma en la q guardamos id en mongo)
+
+
+
+Armamos Class NotesManager con constructor
+- definimos el path
+
+- primera ejecución: init para determinar si el archivo contenedor de las notas existe. 
+
+ . si no existe, se inicializa el archivo con un array vacío, sin filter y con 4 de margen.
+ (usando writeFileSync por sincrono)
+
+ . si existe, se sigue con las otras tareas
+
+
+MÉTODOS sobre formato async-await:
+
+método create() 
+
+- si no hay data de texto, se crea un error y se throwea (agarrado por el catch)
+
+- si hay data de texto, se prosigue...
+ . se crea la nueva nota 
+    . id con crypto
+    .texto
+    .date ingresada o actual por defecto
+
+- variable allNotes para guardar el array entero
+   . readFile() para traerlo
+   . parseamos allNotes
+   . le pusheamos la nota nueva
+   . stringifyamos nuevamente allNotes sin filtro y con 4 de margen
+   
+   . writeFile para enviar(path, archivo)
+   . retorna la nota creada.
+
+   .catch por posible error
+
+
+
+NOTA: si queda el array vacio, borrarlo porq sino se bugea.
+o, en el mejor de los casos introducir un condicional en el init para caso en el q haya array vacío.
