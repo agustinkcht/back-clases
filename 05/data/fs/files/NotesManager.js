@@ -3,9 +3,10 @@ const fs = require("fs")
 const crypto = require("crypto")
 // para generar id's de 12 bytes hexadecimales
 
-class NotesManager {
+module.exports = class NotesManager {
+    // exportamos la class para manejarla en el router.
     constructor() {
-        this.path = '../files/notes.json'
+        this.path = './data/fs/files/notes.json'
         this.init()
     }
     init() {
@@ -87,17 +88,3 @@ class NotesManager {
         }; 
     };
 };
-
-
-async function test() {
-    try {
-        const notes = new NotesManager();
-        //notes.create({ text: 'mala fama' })
-        //notes.read()
-        //notes.readOne('10e18e7ff2a823d824ffb5c8')
-        //notes.destroyOne('10e18e7ff2a823d824ffb5c8')
-    } catch (err) {
-        console.log(err);
-    }
-};
-test()
