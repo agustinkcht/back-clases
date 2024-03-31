@@ -1,0 +1,26 @@
+[
+    {
+        "id": "0eeab6e9a8a361f1656b1c86",
+        "text": "my first note",
+        "category": "to do",
+        "date": "2024-03-21T15:44:27.281Z"
+    },
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "my severe notation",
+        "category": "to do",
+        "date": "2024-03-21T15:57:03.335Z"
+    },
+    {
+        "id": "8e707f8abd0f5699d593f0a8",
+        "text": "mi primera nota con postman",
+        "category": "to do",
+        "date": "2024-03-30T22:22:51.826Z"
+    },
+    {
+        "id": "538d50b6ba8589aa34ed2378",
+        "text": "TEXTO MODIFICADO",
+        "category": "camarones y rabas",
+        "date": "2024-03-30T22:23:35.941Z"
+    }
+]
