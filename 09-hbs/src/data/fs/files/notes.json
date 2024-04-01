@@ -1,0 +1,20 @@
+[
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "my severe notation",
+        "category": "to do",
+        "date": "2024-03-21T15:57:03.335Z"
+    },
+    {
+        "id": "8e707f8abd0f5699d593f0a8",
+        "text": "mi primera nota con postman",
+        "category": "to do",
+        "date": "2024-03-30T22:22:51.826Z"
+    },
+    {
+        "id": "422eedf8c9cbf3ade99a0407",
+        "text": "mi mas reciente y preciada nota",
+        "category": "to do",
+        "date": "2024-04-01T10:59:10.879Z"
+    }
+]
