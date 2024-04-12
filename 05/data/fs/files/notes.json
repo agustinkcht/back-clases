@@ -1,0 +1,32 @@
+[
+    {
+        "id": "0eeab6e9a8a361f1656b1c86",
+        "text": "my first note",
+        "category": "to do",
+        "date": "2024-03-21T15:44:27.281Z"
+    },
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "my 2nd note",
+        "category": "done",
+        "date": "2024-03-21T15:57:03.335Z"
+    },
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "my more notes",
+        "category": "done",
+        "date": "2024-03-23T15:57:03.335Z"
+    },
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "my severe notation",
+        "category": "to do",
+        "date": "2024-03-21T15:57:03.335Z"
+    },
+    {
+        "id": "3e20bfa6fdb1f8546f391769",
+        "text": "the scripture engraved in paper of my own",
+        "category": "done",
+        "date": "2024-03-21T15:57:03.335Z"
+    }      
+]
