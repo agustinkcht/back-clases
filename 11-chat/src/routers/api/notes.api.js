@@ -1,4 +1,4 @@
-// enrutador del recurso, donde tengo tóda la lógica.
+// siempre mismo patron: importo, genero, exporto.
 
 import { Router } from "express";
 import notesManager from "../../data/fs/NotesManager.js"
@@ -12,16 +12,14 @@ notesRouter.get('/:nid', readOne);
 notesRouter.post('/', create);
 notesRouter.put('/:nid', update);
 notesRouter.delete('/:nid', destroy);
-// cada método contiene el endpoint que ejecuta la función.
+// indexRouter ya plantea el /api... aca se agrega otro /
 
 
 // functions lectura
-async function read (req, res, next) { // request(elemento), response(Lo que voy a representar en la pág), next(middleware)
+async function read (req, res, next) {
     try {
         const { category } = req.query;
-        // desestructura category del request para poder pasarlo como argumento al ejecutar el read().
         const allNotes = await notesManager.read(category);
-        // en variable allNotes se guarda el valor de ejecutar el método read sobre notesManager.
         if (allNotes) {
             return res.json({
                 statusCode: 200,
@@ -30,15 +28,14 @@ async function read (req, res, next) { // request(elemento), response(Lo que voy
                 success: true
             });
         } else {
-            const error = new Error("NOT FOUND");
-            error.status = 404;
-            throw error;
+            const error = new Error("NOT FOUND")
+            error.status = 404
+            throw error
         };
     } catch(err) {
-        return next(err); // me ejecuta el middleware para los errores.
+        return next(err);
     };
-}; // read es el nombre de la función, pero hasta que no se ejecuta el notesManager.read(), no se ejecuta el método del json.
-
+};
 async function readOne (req, res, next) {
     try {
         const { nid } = req.params;
@@ -50,7 +47,7 @@ async function readOne (req, res, next) {
                 success: true
             });
         } else {
-            const error = new Error('NOT FOUND');
+            const error = new Error('NOT FOUND')
             error.statusCode = 404;
             throw error;
         };
@@ -65,7 +62,6 @@ async function create (req, res, next) {
         const data = req.body
         // body= datos que envía el cliente, es el cuerpo de lo que se envía.
         const newNote = await notesManager.create(data)
-        // ejecuto create del notes manager pasandole data como prop.
         return res.json({
             statusCode: 201,
             message: `Note created successfully with id + ${newNote.id}`
@@ -80,10 +76,10 @@ async function update (req, res, next) {
         const { nid } = req.params;
         const data = req.body;
         // el cuerpo del request es la data a pasar
-        const updatedNote = await notesManager.update(nid, data)
+        const selected = await notesManager.update(nid, data)
         return res.json({
             statusCode: 200,
-            response: updatedNote,
+            response: selected,
             message: `Note with ID ${nid} updated successfully`
         });
     } catch(err) {
@@ -94,11 +90,11 @@ async function update (req, res, next) {
 async function destroy (req, res, next) {
     try{
         const { nid } = req.params;
-        const deletedNote = await notesManager.destroy(nid)
+        const selected = await notesManager.destroy(nid)
         return res.json({
             statusCode: 200,
             message: 'Note deleted successfully',
-            response: deletedNote
+            response: selected
         });
     } catch(err) {
         return next(err);

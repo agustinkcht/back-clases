@@ -19,25 +19,21 @@ class NotesManager {
     }
     async create(data) {
         try {
-            if (!data.text) {
-                const error = new Error ('Ingrese Texto')
-                throw error // para q lo agarre el catch
-            } else {
-                const note = { // creación nota
-                    id: crypto.randomBytes(12).toString('hex'),
-                    text: data.text,
-                    category: data.category || 'to do',
-                    date: data.date || new Date()
-                }; // cargar nota a array
-                let allNotes = await fs.promises.readFile(this.path, 'utf-8') // leo path y traigo a allNotes
-                    allNotes = JSON.parse(allNotes)  // parseo
-                    allNotes.push(note) // pusheo
-                    allNotes = JSON.stringify(allNotes, null, 4)
-                    await fs.promises.writeFile(this.path, allNotes) // sobreescribo
+            const note = { // creación nota
+                id: crypto.randomBytes(12).toString('hex'),
+                text: data.text,
+                category: data.category || 'to do',
+                date: data.date || new Date(),
+                photo: data.photo || 'img'
+             }; // cargar nota a array
+            let allNotes = await fs.promises.readFile(this.path, 'utf-8') // leopath y traigo a allNotes
+                allNotes = JSON.parse(allNotes)  //parseo
+                allNotes.push(note) // pusheo
+                allNotes = JSON.stringify(allNotes,null, 4)
+                await fs.promises.writeFile(this.path, allNotes) // sobreescribo
                     console.log('creado')
                     return note;
-            };
-        } catch(err) {
+            } catch(err) {
             throw (err)
         };
     };

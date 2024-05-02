@@ -1,7 +1,10 @@
 // enrutador del recurso, donde tengo tóda la lógica.
 
 import { Router } from "express";
-import notesManager from "../../data/fs/NotesManager.js"
+import notesManager from "../../data/fs/NotesManager.js";
+import isText from "../../middlewares/isText.js";
+import uploader from '../../middlewares/multer.js'
+import isPhoto from "../../middlewares/isPhoto.js";
 
 const notesRouter = Router();
 
@@ -9,7 +12,7 @@ const notesRouter = Router();
 // routes 
 notesRouter.get('/', read);
 notesRouter.get('/:nid', readOne);
-notesRouter.post('/', create);
+notesRouter.post('/', uploader.single('photo'), isPhoto, create);
 notesRouter.put('/:nid', update);
 notesRouter.delete('/:nid', destroy);
 // cada método contiene el endpoint que ejecuta la función.
@@ -62,8 +65,7 @@ async function readOne (req, res, next) {
 // functions create, update, destroy 
 async function create (req, res, next) {
     try {
-        const data = req.body
-        // body= datos que envía el cliente, es el cuerpo de lo que se envía.
+        const data = req.body;
         const newNote = await notesManager.create(data)
         // ejecuto create del notes manager pasandole data como prop.
         return res.json({

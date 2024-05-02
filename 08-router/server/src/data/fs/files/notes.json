@@ -16,5 +16,11 @@
         "text": "mi mas reciente y preciada nota",
         "category": "to do",
         "date": "2024-04-01T10:59:10.879Z"
+    },
+    {
+        "id": "a3b0314c784fe74aea8cb57c",
+        "text": "nota 1 3/4",
+        "category": "done",
+        "date": "2024-04-03T14:26:24.941Z"
     }
 ]

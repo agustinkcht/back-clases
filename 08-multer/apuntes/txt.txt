@@ -1,0 +1,23 @@
+estructura de routers (de particular a global)
+  --- cada instancia del router es una profundización en el endpoint. desde el localhost hasta la url completa.
+  
+  --- en cada instancia conectás con la ruta inferior, y definís como es el endpoint para acceder a ella.
+  asimismo exportás para linkear con la ruta superior
+
+
+notes.api.js(notesRouter) [/api/notes]
+users.api.js(usersRouter) [/api/users]
+ = enrutadores de los recursos, donde va la lógica de los métodos, peticiones y demás que consumen la base de datos.
+|
+|
+index.api.js(apiRouter) [/api]
+ = enrutador principal de api, donde se unen todas las rutas de la API.
+|
+|
+index.router.js(indexRouter) [/]
+ = enrutador principal, central de todas las rutas (api, views, etc) el que se conecta con el server.
+|
+|
+server [localhost:8080]
+
+

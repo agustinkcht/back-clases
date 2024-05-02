@@ -4,7 +4,7 @@ import crypto from "crypto";
 class NotesManager {
     // exportamos la class para manejarla en el router.
     constructor() {
-        this.path = "src/data/fs/files/notes.json" // path hacia el archivo/base de datos
+        this.path = "src/data/fs/files/notes.json"
         this.init()
     }
     init() {
@@ -27,33 +27,33 @@ class NotesManager {
                     id: crypto.randomBytes(12).toString('hex'),
                     text: data.text,
                     category: data.category || 'to do',
-                    date: data.date || new Date()
+                    date: data.date || new Date(),
+                    photo: data.photo || 'tbd'
                 }; // cargar nota a array
-                let allNotes = await fs.promises.readFile(this.path, 'utf-8') // leo path y traigo a allNotes
-                    allNotes = JSON.parse(allNotes)  // parseo
-                    allNotes.push(note) // pusheo
+                let allNotes = await fs.promises.readFile(this.path, 'utf-8')
+                    allNotes = JSON.parse(allNotes)
+                    allNotes.push(note)
                     allNotes = JSON.stringify(allNotes, null, 4)
-                    await fs.promises.writeFile(this.path, allNotes) // sobreescribo
+                    await fs.promises.writeFile(this.path, allNotes)
                     console.log('creado')
-                    return note;
+                    return note
             };
+
         } catch(err) {
             throw (err)
         };
     };
-    async read(category = null) {
+    async read(category = 'to do') {
         try {
             let allNotes = await fs.promises.readFile(this.path, 'utf-8')
             allNotes = JSON.parse(allNotes)
-            if(category) {
-                allNotes = allNotes.filter(each => each.category === category )
-            };
+            allNotes = allNotes.filter(each => each.category === category)
             if(allNotes.length === 0) {
                 return null
             } else {
                 console.log(allNotes)
                 return allNotes
-            };
+            }
         } catch (err) {
             throw err
         };
@@ -63,12 +63,7 @@ class NotesManager {
             let allNotes = await fs.promises.readFile(this.path, 'utf-8');
             allNotes = JSON.parse(allNotes)
             let selected = allNotes.find((each) => each.id === id)
-            if(!selected) {
-                throw new Error(`No existe nota con el id: ${id}`)
-            } else {
-                console.log(selected)
-                return selected;
-            };
+            return selected;
         } catch (err) {
             throw err
         }; 
@@ -103,8 +98,8 @@ class NotesManager {
             if (selected) {
                 for (let prop in data) {
                     selected[prop] = data[prop];
-                }; // for in para iterar objeto data
-                allNotes = JSON.stringify(allNotes, null, 4);
+                };
+                allNotes = JSON.stringify(allNotes, null, 2);
                 await fs.promises.writeFile(this.path, allNotes);
                 return selected;
             } else {
@@ -120,9 +115,9 @@ class NotesManager {
     };
     // data es el objeto que envío para modificar el selected
     // necesito iterar el objeto data, para percibir la o las props (fecha, text, category, etc) que están siendo cambiadas, y entonces aplicarselo al selected.
-    // la o las props que matcheen, van a ser actualizadas. esto se ve cuando asigno la data[prop] al selected[prop].
+    // la o las props que matcheen, van a ser actualizadas.
 
-    // por la mutabilidad del metodo find, una vez que altero selected, se altera el valor original del selected en allNotes...
+    // por la mutabilidad del metodo find, una vez que altero selected, se altera el valor original del selected en el array... no hace falta hacer manualmente el reemplazo en all.
 };
 
 const notesManager = new NotesManager()

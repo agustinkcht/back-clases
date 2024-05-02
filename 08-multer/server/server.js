@@ -14,13 +14,11 @@ server.listen(port, ready);
 //middlewares
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
-//para q funcionen req.params/query/body...
+server.use(express.static('public')); // public
+server.use('/webpage', express.static('webpage'))  // otra estatica
 
-// quitamos responsabilidad al server.js utilizando el modulo Router para generar enrutadores.
-// ENRUTADORES: formas de manejar las rutas enfocada en los recursos. (recursos: notesManager, userManager, etc.)
 
 //endpoints-routers
-server.use("/", indexRouter) //con / usame el indexRouter
+server.use("/", indexRouter) 
 server.use(errorHandler)
-server.use(notFoundHandler) // si la url que usas no coincide con las rutas del indexRouter, se ejecuta el notFoundHandler.
-
+server.use(notFoundHandler)
