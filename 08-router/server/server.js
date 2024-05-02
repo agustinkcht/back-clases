@@ -1,7 +1,7 @@
 import express from 'express';
 import indexRouter from './src/routers/index.router.js';
 import errorHandler from './src/middlewares/errorHandler.js';
-import noteFoundHandler from './src/middlewares/notFoundHandler.js';
+import notFoundHandler from './src/middlewares/notFoundHandler.js';
 
 const server = express();
 const port = 8080;
@@ -20,7 +20,7 @@ server.use(express.urlencoded({ extended: true }))
 // ENRUTADORES: formas de manejar las rutas enfocada en los recursos. (recursos: notesManager, userManager, etc.)
 
 //endpoints-routers
-server.use("/", indexRouter)
+server.use("/", indexRouter) //con / usame el indexRouter
 server.use(errorHandler)
-server.use(noteFoundHandler)
+server.use(notFoundHandler) // si la url que usas no coincide con las rutas del indexRouter, se ejecuta el notFoundHandler.
 

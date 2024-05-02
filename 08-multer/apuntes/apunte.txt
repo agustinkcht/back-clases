@@ -1,0 +1,13 @@
+
+LOS MIDDLEWARES son ejecutados a medida que son necesitados.
+
+el notFoundHandler está ultimo en la cadena, y solo va a verse activado cuando no haya ninguna ruta que coincida con las presentes en el server.use("/", indexRouter)
+
+orden apropiado middlewares:
+1. enrutamiento
+2. error handler
+3. not found handler
+
+-----
+
+
